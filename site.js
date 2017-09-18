@@ -14,8 +14,12 @@ building image?*/
 
 $('#building-form').on('submit', function(e) {
   var buildingname = $('#buildingname').val();
-  $('#results').append('<li><a href="https://www.google.com/maps/place/' +
-  buildingname + '">' + buildingname + '</a></li>');
+  if(buildings[buildingname] !== undefined ) {
+    $('#results').append('<li><a href="' +
+    buildings[buildingname]["location"] + '">'+ buildingname + '</a></li>');
+  } else {
+    $('#results').append('<li>' + buildingname + 'not found; try "Galvin Library"');
+  }
   e.preventDefault();
 });
 $('#buildingname').on('focus', function() {
